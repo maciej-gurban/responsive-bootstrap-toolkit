@@ -1,0 +1,65 @@
+/*
+ * None of the CSS in this example is necessary for the base script to work properly. The only required CSS is the one shipped with Bootstrap.
+ */
+
+/* This example's styling */
+
+.wrapper {
+  background: #fff;
+  color:      #666;
+}
+
+.site-topbar {
+  background:     #414141;
+  color:          #fff;
+  height:         60px;
+  line-height:    60px;
+  position:       relative;
+  vertical-align: middle;
+}
+.site-topbar h5 {
+  font-weight:    300;
+  height:         60px;
+  line-height:    60px;
+  margin:         0 60px 0 15px;
+  vertical-align: middle;
+}
+.site-topbar .breakpoint-alias {
+  background-color: #238cce;
+  position:         absolute;
+  top:              0;
+  bottom:           0;
+  right:            0;
+  width:            60px;
+  margin:           auto;
+}
+
+
+/*
+  Changes content of the blue box, displaying alias of currently active breakpoint
+*/
+@media (max-width: 767px) {
+  .breakpoint-alias:before {
+    content: 'XS ';
+  }
+}
+@media (min-width: 768px) and (max-width: 983px) {
+  .breakpoint-alias:before {
+    content: 'SM ';
+  }
+}
+@media (min-width: 984px) and (max-width: 1199px) {
+  .breakpoint-alias:before {
+    content: 'MD ';
+  }
+}
+@media (min-width: 1200px) {
+  .breakpoint-alias:before {
+    content: 'LG ';
+  }
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+

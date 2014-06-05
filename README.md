@@ -5,6 +5,8 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 Current version: 1.5.0
 
+[See a live example](http://codepen.io/dih/pen/ivECj)
+
 ### Checking which breakpoint is active
 
     if (BS.isBreakpoint('xs')) {

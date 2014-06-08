@@ -1,0 +1,90 @@
+/*!
+ *  Responsive Toolkit - SASS & CSS 
+ */
+
+/*
+    Release notes:
+    SASS/Compass will not group media queries, causing quite a lot of repetition in the output CSS. This however, doesn't really matter as GZIP will take care of the repetition. Also, CSS minifier (http://www.minifycss.com/css-compressor/) can handle it well, grouping everything appropriately.
+*/
+
+
+// Breakpoint starting viewport widths
+$xs:         0;
+$sm:     768px;
+$md:     984px;
+$lg:    1200px;
+
+@import "variables";
+@import "mixins";
+
+@include set(h1, font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) );
+@include set(h2, font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) );
+
+
+/* 
+ * Styling of the example code
+ * Not required by any of the library's features to operate
+ */
+
+$initial_bar_height: 60px;
+
+.wrapper {
+    background: #fff;
+    color:      #666;
+    .site-topbar {
+        background:     #414141;
+        color:          #fff;
+        height:         $initial_bar_height;
+        line-height:    $initial_bar_height;
+        position:       relative;
+        vertical-align: middle;
+        //
+        h5 {
+            font-weight:    300;
+            height:         $initial_bar_height;
+            line-height:    $initial_bar_height;
+            margin:         0 60px 0 15px;
+            vertical-align: middle;
+        }
+        .breakpoint-alias {
+            background-color: #238cce;
+            position:         absolute;
+            top:              0;
+            bottom:           0;
+            right:            0;
+            width:            60px;
+            margin:           auto;
+        }
+    }
+}
+
+
+/*
+  Changes content of the blue box, displaying alias of currently active breakpoint
+*/
+@media (max-width: $xs-max) {
+  .breakpoint-alias:before {
+    content: 'XS ';
+  }
+}
+@media (min-width: $sm) and (max-width: $sm-max) {
+  .breakpoint-alias:before {
+    content: 'SM ';
+  }
+}
+@media (min-width: $md) and (max-width: $md-max) {
+  .breakpoint-alias:before {
+    content: 'MD ';
+  }
+}
+@media (min-width: $lg) {
+  .breakpoint-alias:before {
+    content: 'LG ';
+  }
+}
+
+// Helpers
+.text-uppercase {
+  text-transform: uppercase;
+}
+

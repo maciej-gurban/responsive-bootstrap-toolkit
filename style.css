@@ -1,39 +1,90 @@
-/*
- * None of the CSS in this example is necessary for the base script to work properly. The only required CSS is the one shipped with Bootstrap.
+/*!
+ *  Responsive Toolkit - SASS & CSS 
  */
+/*
+    Release notes:
+    SASS/Compass will not group media queries, causing quite a lot of repetition in the output CSS. This however, doesn't really matter as GZIP will take care of the repetition. Also, CSS minifier (http://www.minifycss.com/css-compressor/) can handle it well, grouping everything appropriately.
+*/
+@media (max-width: 767px) {
+  h1 {
+    font-size: 20px;
+  }
+}
 
-/* This example's styling */
+@media (min-width: 768px) and (max-width: 983px) {
+  h1 {
+    font-size: 24px;
+  }
+}
 
+@media (min-width: 984px) and (max-width: 1199px) {
+  h1 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  h2 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 983px) {
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 984px) and (max-width: 1199px) {
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 30px;
+  }
+}
+
+/* 
+ * Styling of the example code
+ * Not required by any of the library's features to operate
+ */
 .wrapper {
   background: #fff;
-  color:      #666;
+  color: #666;
 }
-
-.site-topbar {
-  background:     #414141;
-  color:          #fff;
-  height:         60px;
-  line-height:    60px;
-  position:       relative;
+.wrapper .site-topbar {
+  background: #414141;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
   vertical-align: middle;
 }
-.site-topbar h5 {
-  font-weight:    300;
-  height:         60px;
-  line-height:    60px;
-  margin:         0 60px 0 15px;
+.wrapper .site-topbar h5 {
+  font-weight: 300;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 60px 0 15px;
   vertical-align: middle;
 }
-.site-topbar .breakpoint-alias {
+.wrapper .site-topbar .breakpoint-alias {
   background-color: #238cce;
-  position:         absolute;
-  top:              0;
-  bottom:           0;
-  right:            0;
-  width:            60px;
-  margin:           auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  margin: auto;
 }
-
 
 /*
   Changes content of the blue box, displaying alias of currently active breakpoint
@@ -58,8 +109,6 @@
     content: 'LG ';
   }
 }
-
 .text-uppercase {
   text-transform: uppercase;
 }
-

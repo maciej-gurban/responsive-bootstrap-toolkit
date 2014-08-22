@@ -1,6 +1,5 @@
-// Your own scripts
-(function($, dom, w, BS){
-
+// Your own scripts inside
+(function($, document, window, view){
 
 
     function resizeTopBar() {
@@ -11,12 +10,12 @@
 
         var $toBeAnimated = $('.site-topbar, .site-topbar h5');
 
-        if (BS.isBreakpoint('xs')) {
+        if (view.is('xs')) {
             $toBeAnimated.animate({
                     'height':      compact,
                     'line-height': compact
                 }, 
-                BS.clock.fast
+                view.clock.fast
             );
         }
         else {
@@ -24,15 +23,14 @@
                     'height':      fullsize,
                     'line-height': fullsize
                 }, 
-                BS.clock.fast
+                view.clock.fast
             );
         }
     }
   
-  
 
   // DOM has been loaded
-  $(dom).ready(function() {
+  $(document).ready(function() {
 
         resizeTopBar();
 
@@ -40,22 +38,22 @@
 
  
   // Insert scripts that are supposed to be executed upon each window resize
-  $(w).bind('resize', function() {
-      BS.waitForFinalEvent(function() {
+  $(window).bind('resize', function() {
+      view.refreshed(function() {
 
         resizeTopBar();
 
-      }, BS.clock.fast, BS.timeString.getTime())
+      }, view.clock.fast, view.timer.getTime())
   });
 
   
   // Insert scripts that are supposed to be executed upon each orientation change.
-  $(w).bind('orientationchange', function() {
-      BS.waitForFinalEvent(function() {
+  $(window).bind('orientationchange', function() {
+      view.refreshed(function() {
 
         // resizeTopBar();
 
-      }, BS.clock.fast, BS.timeString.getTime())
+      }, view.clock.fast, view.timer.getTime())
   });
 
   

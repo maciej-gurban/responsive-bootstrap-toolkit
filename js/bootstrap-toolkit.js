@@ -2,11 +2,11 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   1.5.0 (2014-06-04)
+ * Version:   1.5.1 (2014-08-22)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 
-var ResponsiveBootstrapToolkit = (function($, dom, w){
+var ResponsiveBootstrapToolkit = (function($){
 
     // Methods and properties
     var self = {
@@ -19,11 +19,11 @@ var ResponsiveBootstrapToolkit = (function($, dom, w){
             'slow':    600
         },
 
-        // Used to calculate intevals between consecutive function executions
-        timeString: new Date(),
+        // Used to calculate intervals between consecutive function executions
+        timer: new Date(),
 
-        // Return true if current breakpoint matches passed alias
-        isBreakpoint: function( alias ) {
+        // Returns true if current breakpoint matches passed alias
+        is: function( alias ) {
             return $('.device-' + alias).is(':visible');
         },
 
@@ -31,10 +31,9 @@ var ResponsiveBootstrapToolkit = (function($, dom, w){
          * Waits specified number of miliseconds before executing a function
          * Source: http://stackoverflow.com/a/4541963/2066118
          */
-        waitForFinalEvent: function() {
+        refreshed: function() {
             var timers = {};
             return function (callback, ms, uID) {
-                // 
                 var uID = (!uID) ? "I'm a banana!" : null;
                 if (timers[uID]) {
                     clearTimeout(timers[uID]);
@@ -47,7 +46,7 @@ var ResponsiveBootstrapToolkit = (function($, dom, w){
 
     return self;
 
-})(jQuery, document, window);
+})(jQuery);
 
 
 

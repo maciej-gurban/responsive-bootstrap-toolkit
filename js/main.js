@@ -1,6 +1,5 @@
 // Your own scripts
-(function($, dom, w, BS){
-
+(function($, document, window, viewport){
 
 
     function resizeTopBar() {
@@ -11,51 +10,43 @@
 
         var $toBeAnimated = $('.site-topbar, .site-topbar h5');
 
-        if (BS.isBreakpoint('xs')) {
-            $toBeAnimated.animate({
-                    'height':      compact,
-                    'line-height': compact
-                }, 
-                BS.clock.fast
+        if (viewport.is('xs')) {
+            $toBeAnimated.animate(
+                {
+                  'height':      compact,
+                  'line-height': compact
+                },
+                300
             );
         }
         else {
-            $toBeAnimated.animate({
-                    'height':      fullsize,
-                    'line-height': fullsize
-                }, 
-                BS.clock.fast
+            $toBeAnimated.animate(
+                {
+                  'height':      fullsize,
+                  'line-height': fullsize
+                },
+                300
             );
         }
     }
   
   
 
-  // DOM has been loaded
-  $(dom).ready(function() {
+  // Executes once whole document has been loaded
+  $(document).ready(function() {
 
         resizeTopBar();
 
   });
 
  
-  // Insert scripts that are supposed to be executed upon each window resize
-  $(w).bind('resize', function() {
-      BS.waitForFinalEvent(function() {
+  // Executes each time window size changes
+  $(window).bind('resize', function() {
+      viewport.changed(function(){
 
         resizeTopBar();
 
-      }, BS.clock.fast, BS.timeString.getTime())
-  });
-
-  
-  // Insert scripts that are supposed to be executed upon each orientation change.
-  $(w).bind('orientationchange', function() {
-      BS.waitForFinalEvent(function() {
-
-        // resizeTopBar();
-
-      }, BS.clock.fast, BS.timeString.getTime())
+      });
   });
 
   

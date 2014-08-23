@@ -2,28 +2,23 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   1.5.0 (2014-06-04)
+ * Version:   2.0.0 (2014-08-23)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 
-var ResponsiveBootstrapToolkit = (function($, dom, w){
+var ResponsiveBootstrapToolkit = (function($){
 
     // Methods and properties
     var self = {
 
-        // Used by animations and timeouts
-        clock: {
-            'express': 150,
-            'fast':    300,
-            'medium':  450,
-            'slow':    600
-        },
+        // Determines interval between firing 'changed' method
+        interval: 300,
 
-        // Used to calculate intevals between consecutive function executions
-        timeString: new Date(),
+        // Used to calculate intervals between consecutive function executions
+        timer: new Date(),
 
-        // Return true if current breakpoint matches passed alias
-        isBreakpoint: function( alias ) {
+        // Returns true if current breakpoint matches passed alias
+        is: function( alias ) {
             return $('.device-' + alias).is(':visible');
         },
 
@@ -31,13 +26,17 @@ var ResponsiveBootstrapToolkit = (function($, dom, w){
          * Waits specified number of miliseconds before executing a function
          * Source: http://stackoverflow.com/a/4541963/2066118
          */
-        waitForFinalEvent: function() {
+        changed: function() {
             var timers = {};
-            return function (callback, ms, uID) {
-                // 
-                var uID = (!uID) ? "I'm a banana!" : null;
+            return function (callback, ms) {
+                // Get unique timer ID
+                var uID = (!uID) ? self.timer.getTime() : null;
                 if (timers[uID]) {
                     clearTimeout(timers[uID]);
+                }
+                // Use default interval if none specified
+                if(typeof ms === "undefined") {
+                    var ms = self.interval;
                 }
                 timers[uID] = setTimeout(callback, ms);
             };
@@ -47,11 +46,4 @@ var ResponsiveBootstrapToolkit = (function($, dom, w){
 
     return self;
 
-})(jQuery, document, window);
-
-
-
-
-
-
-
+})(jQuery);

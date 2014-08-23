@@ -3,27 +3,41 @@
 
 Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code.
 
-Current version: 1.5.0
+Current version: 2.0.0
 
 [See a live example](http://codepen.io/dih/full/ivECj)
 
 ### Checking which breakpoint is active
 
-    if (BS.isBreakpoint('xs')) {
+    if (viewport.is('xs')) {
       // do stuff in the lowest resolutions only!
     }
    
-    if (BS.isBreakpoint('lg')) {
+    if (viewport.is('lg')) {
       // do stuff on huge screens only
     }
      
     
 ### Executing a script whenever window is resized
 
-    $( w ).bind('resize', function() {
-        BS.waitForFinalEvent(function() {
+**Default interval, 300 ms**
+
+    $( window ).bind('resize', function() {
+        viewport.changed(function() {
         
           // do some other stuff!
           
-        }, 300, BS.timeString.getTime())
+        })
     });
+
+
+**Custom interval**
+
+    $( window ).bind('resize', function() {
+        viewport.changed(function() {
+        
+          // do some other stuff!
+          
+        }, 600)
+    });
+

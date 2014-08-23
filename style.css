@@ -1,39 +1,35 @@
-/*
- * None of the CSS in this example is necessary for the base script to work properly. The only required CSS is the one shipped with Bootstrap.
+/* 
+ * Styling of the example code
+ * Not required by any of the library's features to operate
  */
-
-/* This example's styling */
-
 .wrapper {
   background: #fff;
-  color:      #666;
+  color: #666;
 }
-
-.site-topbar {
-  background:     #414141;
-  color:          #fff;
-  height:         60px;
-  line-height:    60px;
-  position:       relative;
+.wrapper .site-topbar {
+  background: #414141;
+  color: #fff;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
   vertical-align: middle;
 }
-.site-topbar h5 {
-  font-weight:    300;
-  height:         60px;
-  line-height:    60px;
-  margin:         0 60px 0 15px;
+.wrapper .site-topbar h5 {
+  font-weight: 300;
+  height: 60px;
+  line-height: 60px;
+  margin: 0 60px 0 15px;
   vertical-align: middle;
 }
-.site-topbar .breakpoint-alias {
+.wrapper .site-topbar .breakpoint-alias {
   background-color: #238cce;
-  position:         absolute;
-  top:              0;
-  bottom:           0;
-  right:            0;
-  width:            60px;
-  margin:           auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  margin: auto;
 }
-
 
 /*
   Changes content of the blue box, displaying alias of currently active breakpoint
@@ -58,8 +54,6 @@
     content: 'LG ';
   }
 }
-
 .text-uppercase {
   text-transform: uppercase;
 }
-

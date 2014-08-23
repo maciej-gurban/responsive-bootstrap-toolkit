@@ -5,8 +5,7 @@
  * Version:   2.0.0 (2014-08-23)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
-
-var ResponsiveBootstrapToolkit = (function($){
+;var ResponsiveBootstrapToolkit = (function($){
 
     // Methods and properties
     var self = {

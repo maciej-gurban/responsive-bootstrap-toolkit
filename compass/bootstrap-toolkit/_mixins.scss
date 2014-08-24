@@ -1,0 +1,31 @@
+//  Cross-resolution style setting
+//  h1 {
+//      @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) ); 
+//  }
+
+@mixin set($property, $map) {
+    @each $item, $i in $map {
+        & {
+            @if( $item == 'xs') {
+                @media (max-width: $xs-max) {
+                    #{$property}: $i;
+                }        
+            }
+            @if( $item == 'sm') {
+                @media (min-width: $sm) and (max-width: $sm-max) {
+                    #{$property}: $i;
+                }        
+            }
+            @if( $item == 'md') {
+                @media (min-width: $md) and (max-width: $md-max) {
+                    #{$property}: $i;
+                }        
+            }
+            @if( $item == 'lg') {
+                @media (min-width: $lg) {
+                    #{$property}: $i;
+                }        
+            }
+        }
+    }  
+}

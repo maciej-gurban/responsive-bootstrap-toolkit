@@ -3,37 +3,14 @@
 
 Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code.
 
-Current version: 2.0.0
+The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
+
+Current version: 2.1.0
 
 [See a live example on CodePen](http://codepen.io/dih/full/ivECj)
 
-
-### Dependencies
-
-There are two:
-  1. Bootstrap's responsive utility css classes included in its standard stylesheet package
-  2. jQuery library
-
-
-### How do I use it in my project?
-
-Include just before `</body>`
-```
-  <!-- Mandatory for Responsive Bootstrap Toolkit to operate -->
-  <div class="device-xs visible-xs"></div>
-  <div class="device-sm visible-sm"></div>
-  <div class="device-md visible-md"></div>
-  <div class="device-lg visible-lg"></div>
-
-  <!-- Responsive Bootstrap Toolkit -->
-  <script src="js/bootstrap-toolkit.min.js"></script>
-
-  <!-- Your scripts using Bootstrap Toolkit -->
-  <script src="js/main.js"></script>
-```
-
-
-### Checking which breakpoint is active
+### JavaScript
+#### Checking which breakpoint is active
 
     if (viewport.is('xs')) {
       // do stuff in the lowest resolutions only!
@@ -44,9 +21,8 @@ Include just before `</body>`
     }
      
 
-### Executing a script whenever window is resized
-
-**Default interval, 300 ms**
+#### Executing a script whenever window is resized
+##### Default interval, 300 ms
 
     $(window).bind('resize', function() {
         viewport.changed(function() {
@@ -57,7 +33,7 @@ Include just before `</body>`
     });
 
 
-**Custom interval**
+##### Custom interval
 
     $(window).bind('resize', function() {
         viewport.changed(function() {
@@ -68,25 +44,66 @@ Include just before `</body>`
     });
 
 
-### Changelog
+### SASS
+#### Set different CSS property value per breakpoint
 
-**2.0.0**
+    h1 {
+        @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) ); 
+    }
 
-Version 2.0.0 introduces internal method and property name changes. Using this version without making appropriate changes to your scripts will break them. Please proceed with caution.
+You don't need to specify a value for each of the breakpoints. One is enough, four is the max. Example below will work just as well:
 
-| old name            | new name |
-| ------------------- | -------- |
-| method `isBreakpoint`        | `is`     |
-| method `waitForFinalEvent`   | `changed`|
-| property `clock`      | `interval`|
-| property `timeString` | `timer`|
+    h1 {
+        @include set(font-size, (xs: 20px, lg: 30px) );
+    }
 
-For your convenience, version 1.5.0 of Responsive Bootstrap Toolkit is still kept inside this repository. You can find it at https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/js/bootstrap-toolkit-1.5.0.js
 
-**1.5.0**
+Output:
 
-Name-spacing functionalities, code improvements.
+    @media (max-width: 767px) {
+      h1 {
+        font-size: 20px;
+      }
+    }
+    @media (min-width: 1200px) {
+      h1 {
+        font-size: 30px;
+      }
+    }
 
-**1.0.0**
 
-Initial realease containing bare JavaScript functions.
+
+### How do I include it in my project?
+#### JavaScript
+
+Include just before `</body>`
+
+    <!-- Mandatory for Responsive Bootstrap Toolkit to operate -->
+    <div class="device-xs visible-xs"></div>
+    <div class="device-sm visible-sm"></div>
+    <div class="device-md visible-md"></div>
+    <div class="device-lg visible-lg"></div>
+
+    <!-- Responsive Bootstrap Toolkit -->
+    <script src="js/bootstrap-toolkit.min.js"></script>
+
+    <!-- Your scripts using Bootstrap Toolkit -->
+    <script src="js/main.js"></script>
+
+
+#### SASS
+
+Copy contents of `compass/bootstrap-toolkit` directory into your project. File `style.scss` contains lines that need to be in your own style.scss for the mixin to work. You'll need SASS 3.3+.
+
+
+### Dependencies
+
+**JavaScript features:**
+  1. Bootstrap's responsive utility css classes included in its standard stylesheet package
+  2. jQuery library
+
+**CSS features:**
+  1. SASS 3.3+
+  2. Compass
+
+

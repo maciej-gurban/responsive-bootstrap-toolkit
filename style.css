@@ -1,7 +1,58 @@
-/* 
- * Styling of the example code
- * Not required by any of the library's features to operate
+/*!
+ * Responsive Bootstrap Toolkit - SASS & CSS 
+ * 
+ * Release notes:
+ *
+ * SASS/Compass will not group media queries, causing quite a lot
+ * of repetition in the output CSS. GZIP however, will take care of
+ * the repetition making it negligible. 
+ *
+ * Most CSS minifiers can group media query contents. See:
+ * http://www.minifycss.com/css-compressor/ 
+ *
  */
+@media (max-width: 767px) {
+  .breakpoint-alias:before {
+    content: "XS";
+  }
+}
+@media (min-width: 768px) and (max-width: 983px) {
+  .breakpoint-alias:before {
+    content: "SM";
+  }
+}
+@media (min-width: 984px) and (max-width: 1199px) {
+  .breakpoint-alias:before {
+    content: "MD";
+  }
+}
+@media (min-width: 1200px) {
+  .breakpoint-alias:before {
+    content: "LG";
+  }
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 983px) {
+  h1 {
+    font-size: 24px;
+  }
+}
+@media (min-width: 984px) and (max-width: 1199px) {
+  h1 {
+    font-size: 24px;
+  }
+}
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
 .wrapper {
   background: #fff;
   color: #666;
@@ -31,29 +82,6 @@
   margin: auto;
 }
 
-/*
-  Changes content of the blue box, displaying alias of currently active breakpoint
-*/
-@media (max-width: 767px) {
-  .breakpoint-alias:before {
-    content: 'XS ';
-  }
-}
-@media (min-width: 768px) and (max-width: 983px) {
-  .breakpoint-alias:before {
-    content: 'SM ';
-  }
-}
-@media (min-width: 984px) and (max-width: 1199px) {
-  .breakpoint-alias:before {
-    content: 'MD ';
-  }
-}
-@media (min-width: 1200px) {
-  .breakpoint-alias:before {
-    content: 'LG ';
-  }
-}
 .text-uppercase {
   text-transform: uppercase;
 }

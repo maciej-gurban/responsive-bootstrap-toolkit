@@ -1,0 +1,11 @@
+//  Cross-resolution style setting
+
+// Starting viewport widths for each breakpoint
+$sm:     768px !default;
+$md:     984px !default;
+$lg:    1200px !default;
+
+// Max widths
+$xs-max: $sm - 1 !default;
+$sm-max: $md - 1 !default;
+$md-max: $lg - 1 !default;

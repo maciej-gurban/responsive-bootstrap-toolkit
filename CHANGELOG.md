@@ -1,6 +1,7 @@
 ### Changelog
 
 **2.1.0**
+
 Introducing `set` SASS mixin, making it easier to set different CSS property values per breakpoint.
 
 **2.0.0**

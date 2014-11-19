@@ -50,7 +50,7 @@ $(window).bind('resize', function() {
 ### SASS
 #### Set different CSS property value per breakpoint
 
-````sass
+````css
 h1 {
     @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) ); 
 }
@@ -58,7 +58,7 @@ h1 {
 
 You don't need to specify a value for each of the breakpoints. One is enough, four is the max. Example below will work just as well:
 
-````sass
+````css
 h1 {
     @include set(font-size, (xs: 20px, lg: 30px) );
 }

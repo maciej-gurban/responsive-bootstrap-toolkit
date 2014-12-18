@@ -20,7 +20,10 @@
         is: function( alias ) {
             return $('.device-' + alias).is(':visible');
         },
-
+        // return the current viewport value
+        current: function () {
+            return $('.device-xs').is(':visible') ? 'xs' : $('.device-sm').is(':visible') ? 'sm' : $('.device-md').is(':visible') ? 'md' : 'lg';
+        },
         /* 
          * Waits specified number of miliseconds before executing a function
          * Source: http://stackoverflow.com/a/4541963/2066118

@@ -1,5 +1,9 @@
 ### Changelog
 
+**2.2.0**
+
+Introducing `current` method returning breakpoint alias, and `breakpoints` property allowing to specify your own breakpoint names.
+
 **2.1.0**
 
 Introducing `set` SASS mixin, making it easier to set different CSS property values per breakpoint.

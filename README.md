@@ -5,12 +5,12 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
 
-Current version: 2.1.0
+Current version: 2.2.0
 
 [See a live example on CodePen](http://codepen.io/dih/full/ivECj)
 
 ### JavaScript
-#### Checking which breakpoint is active
+#### Determine which breakpoint is active
 
 ````javascript
 if (viewport.is('xs')) {
@@ -22,7 +22,7 @@ if (viewport.is('lg')) {
 }
 ````
 
-#### Executing a script whenever window is resized
+#### Execute a script whenever window is resized
 ##### Default interval, 300 ms
 
 ````javascript
@@ -44,6 +44,18 @@ $(window).bind('resize', function() {
       // do some other stuff!
       
     }, 600)
+});
+````
+
+#### Return the name of current breakpoint
+
+````javascript
+$(window).bind('resize', function() {
+    viewport.changed(function() {
+    
+        console.log( 'Current breakpoint: '+ viewport.current() );
+      
+    })
 });
 ````
 

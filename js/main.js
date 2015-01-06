@@ -37,6 +37,8 @@
 
         resizeTopBar();
 
+        console.log( 'Current breakpoint:', viewport.current() );  
+
   });
 
  
@@ -45,6 +47,8 @@
       viewport.changed(function(){
 
         resizeTopBar();
+
+        console.log( 'Current breakpoint:', viewport.current() );
 
       });
   });

@@ -29,19 +29,19 @@
             );
         }
     }
-  
-  
+
+
 
   // Executes once whole document has been loaded
   $(document).ready(function() {
 
         resizeTopBar();
 
-        console.log( 'Current breakpoint:', viewport.current() );  
+        console.log( 'Current breakpoint:', viewport.current() );
 
   });
 
- 
+
   // Executes each time window size changes
   $(window).bind('resize', function() {
       viewport.changed(function(){
@@ -53,5 +53,5 @@
       });
   });
 
-  
+
 })(jQuery, document, window, ResponsiveBootstrapToolkit);

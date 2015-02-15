@@ -1,5 +1,9 @@
 ### Changelog
 
+**2.3.0**
+
+Removing the requirement to insert visibility divs into the document. 
+
 **2.2.0**
 
 Introducing `current` method returning breakpoint alias, and `breakpoints` property allowing to specify your own breakpoint names.

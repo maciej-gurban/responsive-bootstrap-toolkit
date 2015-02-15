@@ -5,7 +5,7 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
 
-Current version: 2.2.0
+Current version: 2.3.0
 
 [See a live example on CodePen](http://codepen.io/dih/full/ivECj)
 

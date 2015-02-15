@@ -28,9 +28,9 @@ if (viewport.is('lg')) {
 ````javascript
 $(window).bind('resize', function() {
     viewport.changed(function() {
-    
+
       // do some other stuff!
-      
+
     })
 });
 ````
@@ -40,9 +40,9 @@ $(window).bind('resize', function() {
 ````javascript
 $(window).bind('resize', function() {
     viewport.changed(function() {
-    
+
       // do some other stuff!
-      
+
     }, 600)
 });
 ````
@@ -52,9 +52,9 @@ $(window).bind('resize', function() {
 ````javascript
 $(window).bind('resize', function() {
     viewport.changed(function() {
-    
+
         console.log( 'Current breakpoint: '+ viewport.current() );
-      
+
     })
 });
 ````
@@ -64,7 +64,7 @@ $(window).bind('resize', function() {
 
 ````css
 h1 {
-    @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) ); 
+    @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) );
 }
 ````
 
@@ -98,12 +98,6 @@ Output:
 Include just before `</body>`
 
 ````html
-<!-- Mandatory for Responsive Bootstrap Toolkit to operate -->
-<div class="device-xs visible-xs"></div>
-<div class="device-sm visible-sm"></div>
-<div class="device-md visible-md"></div>
-<div class="device-lg visible-lg"></div>
-
 <!-- Responsive Bootstrap Toolkit -->
 <script src="js/bootstrap-toolkit.min.js"></script>
 
@@ -125,5 +119,3 @@ Copy contents of `compass/bootstrap-toolkit` directory into your project. File `
 **CSS features:**
   1. SASS 3.3+
   2. Compass
-
-

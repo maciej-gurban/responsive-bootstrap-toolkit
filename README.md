@@ -108,8 +108,8 @@ Paste just before `</body>`
 ````
 
 #### Dependencies:
-    * jQuery
-    * Bootstrap's responsive utility css classes (included in its standard stylesheet package)
+* jQuery
+* Bootstrap's responsive utility css classes (included in its standard stylesheet package)
 
 
 
@@ -151,5 +151,5 @@ Copy contents of `compass/bootstrap-toolkit` directory into your project. File `
 
 
 #### SASS Dependencies
-    * SASS 3.3+
-    * Compass
+* SASS 3.3+
+* Compass

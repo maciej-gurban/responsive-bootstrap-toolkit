@@ -5,50 +5,69 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
 
-Current version: 2.3.0
+Current version: **2.3.0**
 
-[See a live example on CodePen](http://codepen.io/dih/full/ivECj)
+### Table of Contents
+* [Live example](#live-example)
+* [Migrating from an older version](#migrating-from-an-older-version)
+* JavaScript features
+    * [Basic usage](#basic-usage)
+    * [Execute code on window resize](#execute-code-on-window-resize)
+    * [Get alias of current breakpoint](#get-alias-of-current-breakpoint)
+    * [Taking precautions](#taking-precautions)
+    * [How do I include it in my project?](#how-do-i-include-it-in-my-project)
+    * [Dependencies](#dependencies)
+* SASS features
+    * [Basic usage](#sass-features)
+    * [How do I include it in my project?](#sass-instructions)
+    * [Dependencies](#sass-dependencies)
 
-### JavaScript
-#### Determine which breakpoint is active
+### Live example
+
+Available on [CodePen](http://codepen.io/dih/full/ivECj)
+
+### Migrating from an older version
+
+Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of improvements in each version of the library.
+
+### JavaScript features
+#### Basic usage:
 
 ````javascript
-if (viewport.is('xs')) {
-  // do stuff in the lowest resolutions only!
-}
+// Wrap IIFE around your code
+(function($, viewport){
 
-if (viewport.is('lg')) {
-  // do stuff on huge screens only
-}
+    // Do stuff in the lowest resolutions only
+    if( viewport.is('xs') ) {
+        // ...
+    }
+
+    // Execute code each time window size changes
+    $(window).bind('resize', function() {
+        viewport.changed(function(){
+            if( viewport.is('xs') ) {
+                // ...
+            }
+        });
+    });
+
+})(jQuery, ResponsiveBootstrapToolkit);
 ````
 
-#### Execute a script whenever window is resized
-##### Default interval, 300 ms
+#### Execute code on window resize
+Allows using custom debounce interval. The default one is set at 300ms.
 
 ````javascript
 $(window).bind('resize', function() {
     viewport.changed(function() {
 
-      // do some other stuff!
-
-    })
-});
-````
-
-##### Custom interval
-
-````javascript
-$(window).bind('resize', function() {
-    viewport.changed(function() {
-
-      // do some other stuff!
+      // ...
 
     }, 600)
 });
 ````
 
-#### Return the name of current breakpoint
-
+#### Get alias of current breakpoint
 ````javascript
 $(window).bind('resize', function() {
     viewport.changed(function() {
@@ -59,7 +78,42 @@ $(window).bind('resize', function() {
 });
 ````
 
-### SASS
+#### Taking precautions
+
+In certain circumstances, it might be necessary to wait for certain events to happen before executing your scripts.
+````javascript
+// Execute code only when document has been loaded fully
+$(document).ready(function() {
+    if( viewport.is('xs') ) {
+        // ...
+    }
+});
+// Execute code only when all resouces have loaded
+$(window).load(function() {
+    if( viewport.is('xs') ) {
+        // ...
+    }
+});
+````
+
+#### How do I include it in my project?
+
+Paste just before `</body>`
+
+````html
+<!-- Responsive Bootstrap Toolkit -->
+<script src="js/bootstrap-toolkit.min.js"></script>
+<!-- Your scripts using Responsive Bootstrap Toolkit -->
+<script src="js/main.js"></script>
+````
+
+#### Dependencies:
+    * jQuery
+    * Bootstrap's responsive utility css classes (included in its standard stylesheet package)
+
+
+
+### SASS features
 #### Set different CSS property value per breakpoint
 
 ````css
@@ -92,30 +146,10 @@ Output:
 ````
 
 
-### How do I include it in my project?
-#### JavaScript
-
-Include just before `</body>`
-
-````html
-<!-- Responsive Bootstrap Toolkit -->
-<script src="js/bootstrap-toolkit.min.js"></script>
-
-<!-- Your scripts using Responsive Bootstrap Toolkit -->
-<script src="js/main.js"></script>
-````
-
-#### SASS
-
+#### SASS Instructions
 Copy contents of `compass/bootstrap-toolkit` directory into your project. File `style.scss` contains lines that need to be in your own style.scss for the mixin to work. You'll need SASS 3.3+.
 
 
-### Dependencies
-
-**JavaScript features:**
-  1. Bootstrap's responsive utility css classes included in its standard stylesheet package
-  2. jQuery library
-
-**CSS features:**
-  1. SASS 3.3+
-  2. Compass
+#### SASS Dependencies
+    * SASS 3.3+
+    * Compass

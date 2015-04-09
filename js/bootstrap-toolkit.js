@@ -18,17 +18,22 @@
         /**
          * Breakpoint aliases
          */
-        breakpoints: {
-            'xs': $('<div class="device-xs visible-xs"></div>').appendTo('body'),
-            'sm': $('<div class="device-sm visible-sm"></div>').appendTo('body'),
-            'md': $('<div class="device-md visible-md"></div>').appendTo('body'),
-            'lg': $('<div class="device-lg visible-lg"></div>').appendTo('body')
-        },
+        breakpoints: ['xs', 'sm', 'md', 'lg'],
 
         /**
          * Used to calculate intervals between consecutive function executions
          */
         timer: new Date(),
+
+        /**
+         * Returns breakpoint DOM element
+         */
+        breakpoint: function(alias) {
+            if ($.inArray(alias, self.breakpoints) !== -1) {
+                return $('<div class="device-'+alias+' visible-'+alias+' visible-'+alias+'-block"></div>').appendTo('body');
+            }
+            return false;
+        },
 
         /**
          * Returns true if current breakpoint matches passed alias

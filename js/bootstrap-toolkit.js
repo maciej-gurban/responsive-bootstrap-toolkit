@@ -39,7 +39,7 @@
          * Returns true if current breakpoint matches passed alias
          */
         is: function( alias ) {
-            return self.breakpoints[alias].is(':visible');
+            return self.breakpoint(alias).is(':visible');
         },
 
         /**

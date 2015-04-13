@@ -30,6 +30,10 @@
          */
         breakpoint: function(alias) {
             if ($.inArray(alias, self.breakpoints) !== -1) {
+                var $element = $('.device-'+alias);
+                if ($element.length) {
+                    return $element.first();
+                }
                 return $('<div class="device-'+alias+' visible-'+alias+' visible-'+alias+'-block"></div>').appendTo('body');
             }
             return false;

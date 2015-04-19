@@ -1,5 +1,13 @@
 ### Changelog
 
+**2.4.1**
+
+Updating Bootstrap visibility classes for future compliancy, updating documentation to reflect changes in version 2.4.0, and small code refactoring.
+
+**2.4.0**
+
+Introducing comparison operators in the form of `viewport.is(">md").
+
 **2.3.0**
 
 Removing the requirement to insert visibility divs into the document. 

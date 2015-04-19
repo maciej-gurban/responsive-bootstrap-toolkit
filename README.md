@@ -5,9 +5,10 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
 
-Current version: **2.3.0**
+Current version: **2.4.1**
 
 ### Table of Contents
+* [Installation](#installation)
 * [Live example](#live-example)
 * [Migrating from an older version](#migrating-from-an-older-version)
 * JavaScript features
@@ -22,8 +23,12 @@ Current version: **2.3.0**
     * [How do I include it in my project?](#sass-instructions)
     * [Dependencies](#sass-dependencies)
 
-### Live example
+### Installation
 
+### Live example
+````
+bower install responsive-bootstrap-toolkit
+````
 Available on [CodePen](http://codepen.io/dih/full/ivECj)
 
 ### Migrating from an older version
@@ -37,8 +42,18 @@ Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-t
 // Wrap IIFE around your code
 (function($, viewport){
 
-    // Do stuff in the lowest resolutions only
+    // Executes only in XS breakpoint
     if( viewport.is('xs') ) {
+        // ...
+    }
+
+    // Executes in SM, MD and LG breakpoints
+    if( viewport.is('>=sm') ) {
+        // ...
+    }
+
+    // Executes in XS and SM breakpoints
+    if( viewport.is('<md') ) {
         // ...
     }
 
@@ -148,6 +163,9 @@ Output:
 
 #### SASS Instructions
 Copy contents of `compass/bootstrap-toolkit` directory into your project. File `style.scss` contains lines that need to be in your own style.scss for the mixin to work. You'll need SASS 3.3+.
+
+To start working on project's SASS, run in project's root directory.
+`compass watch compass/`
 
 
 #### SASS Dependencies

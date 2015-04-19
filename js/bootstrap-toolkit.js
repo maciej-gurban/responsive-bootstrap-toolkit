@@ -2,7 +2,7 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   2.4.0 (2015-04-12)
+ * Version:   2.4.1 (2015-04-19)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 ;var ResponsiveBootstrapToolkit = (function($){
@@ -21,16 +21,22 @@
          * Splits the expression in into <|> [=] alias
          */
         splitExpression: function( str ) {
+
             // Used operator
-            var operator = (str.charAt(0) == '<' || str.charAt(0) == '>') ? str.charAt(0) : false;
-            // Include breakpoints equal to X? 
+            var operator = str.charAt(0);
+            // Include breakpoint equal to alias? 
             var orEqual  = (str.charAt(1) == '=') ? true : false
 
-            // Cast to boolean, then to integer
-            var index = (!!operator ? 1 : 0) + (orEqual ? 1 : 0);
+            /**
+             * Index at which breakpoint name starts.
+             *
+             * For:  >sm, index = 1
+             * For: >=sm, index = 2
+             */
+            var index = 1 + (orEqual ? 1 : 0);
 
             /**
-             * The remaining part of the expression, after the operator, will be treated as
+             * The remaining part of the expression, after the operator, will be treated as the
              * breakpoint name to compare with
              */
             var breakpointName = str.slice(index);
@@ -60,9 +66,9 @@
         /**
          * Determines whether current breakpoint matches the expression given
          */
-        isMatchingExpression: function( string ) {
+        isMatchingExpression: function( str ) {
 
-            var expression = internal.splitExpression( string );
+            var expression = internal.splitExpression( str );
 
             // Get names of all breakpoints
             var breakpointList = Object.keys(self.breakpoints);
@@ -108,7 +114,7 @@
                 return internal.isAnyActive( acceptedBreakpoints );                
 
             }
-        },
+        }
 
     };
 
@@ -124,13 +130,15 @@
          * Breakpoint aliases, listed from smallest to biggest
          */
         breakpoints: {
-            'xs': $('<div class="device-xs visible-xs"></div>').appendTo('body'),
-            'sm': $('<div class="device-sm visible-sm"></div>').appendTo('body'),
-            'md': $('<div class="device-md visible-md"></div>').appendTo('body'),
-            'lg': $('<div class="device-lg visible-lg"></div>').appendTo('body')
+            'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>').appendTo('body'),
+            'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>').appendTo('body'),
+            'md': $('<div class="device-md visible-md visible-md-block"></div>').appendTo('body'),
+            'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>').appendTo('body')
         },
 
         /**
+         * Debouncing helper
+         *
          * Used to calculate intervals between consecutive function executions
          */
         timer: new Date(),
@@ -161,7 +169,7 @@
         },
 
         /*
-         * Waits specified number of miliseconds before executing a function
+         * Waits specified number of miliseconds before executing a callback
          * Source: http://stackoverflow.com/a/4541963/2066118
          */
         changed: function() {
@@ -169,10 +177,12 @@
             return function(callback, ms) {
                 // Get unique timer ID
                 var uID = (!uID) ? self.timer.getTime() : null;
+
                 if (timers[uID]) {
                     clearTimeout(timers[uID]);
                 }
-                // Use default interval if none specified
+
+                // Uses default interval if none specified
                 if (typeof ms === "undefined") {
                     var ms = self.interval;
                 }

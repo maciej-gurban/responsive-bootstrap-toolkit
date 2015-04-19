@@ -3,13 +3,17 @@
  * 
  * Release notes:
  *
- * SASS/Compass will not group media queries, causing quite a lot
- * of repetition in the output CSS. GZIP however, will take care of
- * the repetition making it negligible. 
+ * SASS/Compass will not group media queries, causing quite a lot of repetition in the output CSS.
+ * GZIP however, will take care of the repetition making it negligible. 
  *
- * Most CSS minifiers can group media query contents. See:
- * http://www.minifycss.com/css-compressor/ 
+ * Most CSS minifiers can group media query contents. See: http://www.minifycss.com/css-compressor/ 
  *
+ */
+/**
+ * Breakpoint starting viewport widths
+ */
+/**
+ * Nothing below is required for Responsive Bootstrap Toolkit to operate
  */
 @media (max-width: 767px) {
   .breakpoint-alias:before {
@@ -30,6 +34,10 @@
   .breakpoint-alias:before {
     content: "LG";
   }
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -54,21 +62,23 @@
 }
 
 .wrapper {
-  background: #fff;
-  color: #666;
+  background: white;
+  color: #666666;
 }
 .wrapper .site-topbar {
-  background: #414141;
-  color: #fff;
   height: 60px;
   line-height: 60px;
+  vertical-align: middle;
+  background: #414141;
+  color: white;
   position: relative;
   vertical-align: middle;
 }
 .wrapper .site-topbar h5 {
+  height: inherit;
+  line-height: inherit;
+  vertical-align: middle;
   font-weight: 300;
-  height: 60px;
-  line-height: 60px;
   margin: 0 60px 0 15px;
   vertical-align: middle;
 }
@@ -80,6 +90,32 @@
   right: 0;
   width: 60px;
   margin: auto;
+}
+
+.comparison-boxes {
+  text-align: justify;
+  font-size: 0.1px;
+}
+.comparison-boxes:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+.comparison-operator {
+  height: 140px;
+  line-height: 140px;
+  vertical-align: middle;
+  display: inline-block;
+  background: #414141;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  width: 33%;
+  min-height: 50%;
+}
+.comparison-operator.active {
+  background: #238cce;
 }
 
 .text-uppercase {

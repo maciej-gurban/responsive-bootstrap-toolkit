@@ -3,57 +3,96 @@
  * 
  * Release notes:
  *
- * SASS/Compass will not group media queries, causing quite a lot
- * of repetition in the output CSS. GZIP however, will take care of
- * the repetition making it negligible. 
+ * SASS/Compass will not group media queries, causing quite a lot of repetition in the output CSS.
+ * GZIP however, will take care of the repetition making it negligible. 
  *
- * Most CSS minifiers can group media query contents. See:
- * http://www.minifycss.com/css-compressor/ 
+ * Most CSS minifiers can group media query contents. See: http://www.minifycss.com/css-compressor/ 
  *
  */
 
-// Breakpoint starting viewport widths
-    $sm:  768px;
-    $md:  984px;
-    $lg: 1200px;
+/**
+ * Breakpoint starting viewport widths
+ */
+$sm:  768px;
+$md:  984px;
+$lg: 1200px;
 
-    @import "variables";
-    @import "mixins";
+@import "variables";
+@import "mixins";
 
 
 
-// Nothing below is required for Responsive Bootstrap Toolkit to operate
+/**
+ * Nothing below is required for Responsive Bootstrap Toolkit to operate
+ */
 
-$initial_bar_height: 60px;
 
+$colors: (
+    dark-gray: #414141,
+    gray:      #666666,
+    blue:      #238cce
+);
+
+@function palette( $color-name ) {
+    @return map-get($colors, $color-name);
+}
+
+@mixin align-vertically( $height ) {
+    height:         $height;
+    line-height:    $height;
+    vertical-align: middle;
+}
+
+
+
+// Toolbar showing currently active breakpoint
 .breakpoint-alias:before {
-    @include set(content, (xs: 'XS', sm: 'SM', md: 'MD', lg: 'LG') ); 
+    @include set(
+        content, (
+            xs: 'XS',
+            sm: 'SM',
+            md: 'MD', 
+            lg: 'LG'
+        )
+    ); 
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
     @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) ); 
 }
 
+
+
+
+
+
 .wrapper {
-    background: #fff;
-    color:      #666;
+
+    background: white;
+    color:      palette(gray);
+
     .site-topbar {
-        background:     #414141;
-        color:          #fff;
-        height:         $initial_bar_height;
-        line-height:    $initial_bar_height;
+        @include align-vertically( 60px );
+
+        background:     palette(dark-gray);
+        color:          white;
         position:       relative;
         vertical-align: middle;
         //
         h5 {
+            @include align-vertically( inherit );
+
             font-weight:    300;
-            height:         $initial_bar_height;
-            line-height:    $initial_bar_height;
             margin:         0 60px 0 15px;
             vertical-align: middle;
         }
         .breakpoint-alias {
-            background-color: #238cce;
+            background-color: palette(blue);
             position:         absolute;
             top:              0;
             bottom:           0;
@@ -62,6 +101,35 @@ h1 {
             margin:           auto;
         }
     }
+}
+
+
+.comparison-boxes {
+    text-align: justify;
+    font-size:  0.1px;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.comparison-operator {
+    @include align-vertically( 140px );
+
+    display:     inline-block;
+    background:  palette(dark-gray);
+    color:       white;
+    font-size:   25px;
+    text-align:  center;
+    width:       33%;
+    min-height:  50%;
+
+    &.active {
+        background: palette(blue);
+    }
+
 }
 
 

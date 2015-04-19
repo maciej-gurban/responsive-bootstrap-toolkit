@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content=="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Responsive Bootstrap Toolkit</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <!-- Include default Bootstrap stylesheet -->
-    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Include stylesheet of this example -->
     <link rel="stylesheet" type="text/css" href="style.css" rel="stylesheet"/>
 </head>
@@ -21,10 +22,23 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h4>Example #1</h4>
-                    <p>In this example, height of the top bar will collapse whenever XS breakpoints is reached, and restore to the original if higher breakpoint is detected.</p>
-                    <p>To verify which breakpoint you're currenly browsing, refer to the blue box in the top right corner storing current breakpoint's alias.</p>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-push-2 col-md-push-3 col-lg-push-3">
+                    <br/>
+                    <br/>
+                    <p>Boxes below get highlighted whenever current viewport matches their expression. Alias of current breakpoint is visible in the top right corner.</p>
+                    <br/>
+                    
+                    <div class="comparison-boxes">
+                        <div class="comparison-operator box-1">
+                            &lt;=sm
+                        </div>
+                        <div class="comparison-operator box-2">
+                            md
+                        </div>
+                        <div class="comparison-operator box-3">
+                            &gt;md
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,7 +46,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script src="js/bootstrap-toolkit.js"></script>
     <script src="js/main.js"></script>

@@ -24,11 +24,12 @@ Current version: **2.4.1**
     * [Dependencies](#sass-dependencies)
 
 ### Installation
-
-### Live example
 ````
 bower install responsive-bootstrap-toolkit
 ````
+
+### Live example
+
 Available on [CodePen](http://codepen.io/dih/full/ivECj)
 
 ### Migrating from an older version

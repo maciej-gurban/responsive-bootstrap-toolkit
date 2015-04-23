@@ -25,7 +25,7 @@ Current version: **2.4.1**
 
 ### Installation
 ````
-bower install responsive-bootstrap-toolkit
+bower install https://github.com/maciej-gurban/responsive-bootstrap-toolkit.git
 ````
 
 ### Live example

@@ -130,10 +130,10 @@
          * Breakpoint aliases, listed from smallest to biggest
          */
         breakpoints: {
-            'xs': $.parseHTML('<div class="device-xs visible-xs visible-xs-block"></div>'),
-            'sm': $.parseHTML('<div class="device-sm visible-sm visible-sm-block"></div>'),
-            'md': $.parseHTML('<div class="device-md visible-md visible-md-block"></div>'),
-            'lg': $.parseHTML('<div class="device-lg visible-lg visible-lg-block"></div>')
+            'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
+            'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
+            'md': $('<div class="device-md visible-md visible-md-block"></div>'),
+            'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
         },
 
         /**

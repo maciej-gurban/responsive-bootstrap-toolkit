@@ -5,7 +5,7 @@ Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in Jav
 
 The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
 
-Current version: **2.4.1**
+Current version: **2.4.2**
 
 ### Table of Contents
 * [Installation](#installation)
@@ -34,7 +34,7 @@ Available on [CodePen](http://codepen.io/dih/full/ivECj)
 
 ### Migrating from an older version
 
-Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of improvements in each version of the library.
+Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of changes in each version of the library.
 
 ### JavaScript features
 #### Basic usage:
@@ -59,12 +59,12 @@ Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-t
     }
 
     // Execute code each time window size changes
-    $(window).bind('resize', function() {
+    $(window).resize(
         viewport.changed(function(){
             if( viewport.is('xs') ) {
                 // ...
             }
-        });
+        })
     });
 
 })(jQuery, ResponsiveBootstrapToolkit);
@@ -74,8 +74,8 @@ Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-t
 Allows using custom debounce interval. The default one is set at 300ms.
 
 ````javascript
-$(window).bind('resize', function() {
-    viewport.changed(function() {
+$(window).resize(
+    viewport.changed(function(){
 
       // ...
 
@@ -85,8 +85,8 @@ $(window).bind('resize', function() {
 
 #### Get alias of current breakpoint
 ````javascript
-$(window).bind('resize', function() {
-    viewport.changed(function() {
+$(window).resize(
+    viewport.changed(function(){
 
         console.log( 'Current breakpoint: '+ viewport.current() );
 

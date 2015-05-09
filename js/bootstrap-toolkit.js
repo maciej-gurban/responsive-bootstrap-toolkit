@@ -2,7 +2,7 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   2.4.1 (2015-04-19)
+ * Version:   2.4.2 (2015-05-09)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 ;var ResponsiveBootstrapToolkit = (function($){
@@ -24,7 +24,7 @@
 
             // Used operator
             var operator = str.charAt(0);
-            // Include breakpoint equal to alias? 
+            // Include breakpoint equal to alias?
             var orEqual  = (str.charAt(1) == '=') ? true : false
 
             /**
@@ -54,7 +54,7 @@
         isAnyActive: function( breakpoints ) {
             var found = false;
             $.each(breakpoints, function( index, alias ) {
-                // Once first breakpoint matches, return true and break the out of the loop
+                // Once first breakpoint matches, return true and break out of the loop
                 if( self.breakpoints[ alias ].is(':visible') ) {
                     found = true;
                     return false;
@@ -87,7 +87,7 @@
                  * at 'md' breakpoint, indicated in the expression,
                  * That makes: start = 0, end = 2 (index of 'md' breakpoint)
                  *
-                 * Parsing viewport.is('<md') we start at index 'xs' breakpoint, and end at 
+                 * Parsing viewport.is('<md') we start at index 'xs' breakpoint, and end at
                  * 'sm' breakpoint, one before 'md'.
                  * Which makes: start = 0, end = 1
                  */
@@ -100,7 +100,7 @@
                  * of breakpoint list.
                  * That makes: start = 1, end = undefined
                  *
-                 * Parsing viewport.is('>sm') we start at breakpoint 'md' and end at the end of 
+                 * Parsing viewport.is('>sm') we start at breakpoint 'md' and end at the end of
                  * breakpoint list.
                  * Which makes: start = 2, end = undefined
                  */
@@ -111,7 +111,7 @@
 
                 var acceptedBreakpoints = breakpointList.slice(start, end);
 
-                return internal.isAnyActive( acceptedBreakpoints );                
+                return internal.isAnyActive( acceptedBreakpoints );
 
             }
         }
@@ -122,7 +122,7 @@
     var self = {
 
         /**
-         * Determines default interval between firing 'changed' method
+         * Determines default debouncing interval of 'changed' method
          */
         interval: 300,
 
@@ -130,18 +130,11 @@
          * Breakpoint aliases, listed from smallest to biggest
          */
         breakpoints: {
-            'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>').appendTo('body'),
-            'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>').appendTo('body'),
-            'md': $('<div class="device-md visible-md visible-md-block"></div>').appendTo('body'),
-            'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>').appendTo('body')
+            'xs': $.parseHTML('<div class="device-xs visible-xs visible-xs-block"></div>'),
+            'sm': $.parseHTML('<div class="device-sm visible-sm visible-sm-block"></div>'),
+            'md': $.parseHTML('<div class="device-md visible-md visible-md-block"></div>'),
+            'lg': $.parseHTML('<div class="device-lg visible-lg visible-lg-block"></div>')
         },
-
-        /**
-         * Debouncing helper
-         *
-         * Used to calculate intervals between consecutive function executions
-         */
-        timer: new Date(),
 
         /**
          * Returns true if current breakpoint matches passed alias
@@ -170,27 +163,27 @@
 
         /*
          * Waits specified number of miliseconds before executing a callback
-         * Source: http://stackoverflow.com/a/4541963/2066118
          */
-        changed: function() {
-            var timers = {};
-            return function(callback, ms) {
-                // Get unique timer ID
-                var uID = (!uID) ? self.timer.getTime() : null;
-
-                if (timers[uID]) {
-                    clearTimeout(timers[uID]);
-                }
-
-                // Uses default interval if none specified
-                if (typeof ms === "undefined") {
-                    var ms = self.interval;
-                }
-                timers[uID] = setTimeout(callback, ms);
+        changed: function(fn, ms) {
+            var timer; 
+            return function(){
+                clearTimeout(timer); 
+                timer = setTimeout(function(){
+                    fn();
+                }, ms || self.interval); 
             };
-        }()
+        }
 
-    }
+    };
+
+    /**
+     * Append visibility divs to <body> only after DOM laoded
+     */
+    $(document).ready(function(){
+        $.each(self.breakpoints, function(alias){
+            self.breakpoints[alias].appendTo('body');
+        });
+    });
 
     return self;
 

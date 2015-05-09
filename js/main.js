@@ -21,26 +21,19 @@
         }
     }
 
-  // Executes once whole document has been loaded
-  $(document).ready(function() {
+    // Executes once whole document has been loaded
+    $(document).ready(function() {
 
         highlightBoxes();
 
-        console.log( 'Current breakpoint:', viewport.current() );
+        console.log('Current breakpoint:', viewport.current());
 
-  });
+    });
 
-
-  // Executes each time window size changes
-  $(window).bind('resize', function() {
-      viewport.changed(function(){
-
-        highlightBoxes();
-
-        console.log( 'Current breakpoint:', viewport.current() );
-
-      });
-  });
-
+    $(window).resize(
+        viewport.changed(function(){
+            console.log('Current breakpoint:', viewport.current());
+        })
+    );
 
 })(jQuery, document, window, ResponsiveBootstrapToolkit);

@@ -1,5 +1,10 @@
 ### Changelog
 
+**2.4.2**
+Refactoring 'changed' method (and updating usage examples in main.js) to solve issue [#14](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/issues/14).
+
+Delaying the injection of visibility divs into `<body>` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.
+
 **2.4.1**
 
 Updating Bootstrap visibility classes for future compliancy, updating documentation to reflect changes in version 2.4.0, and small code refactoring.

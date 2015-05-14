@@ -1,39 +1,36 @@
 # Responsive Bootstrap Toolkit
 
+Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code. Despite the name, you can use it also with Foundation, or any other framework.
 
-Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code.
+Current version: **2.5.0**
 
-The SASS module enables quick and simple styling for elements needing different property values for each screen resolution.
-
-Current version: **2.4.2**
-
-### Table of Contents
+### Documentation
 * [Installation](#installation)
-* [Live example](#live-example)
+* [Demo](#demo)
+* [Basic usage](#basic-usage)
+* [Execute code on window resize](#execute-code-on-window-resize)
+* [Get alias of current breakpoint](#get-alias-of-current-breakpoint)
+* [Using with Foundation](#using-with-foundation)
+* [Providing your own visibility classes](#providing-your-own-visibility-classes)
+
+### HOW-TO
+* [How do I include it in my project?](#how-do-i-include-it-in-my-project)
 * [Migrating from an older version](#migrating-from-an-older-version)
-* JavaScript features
-    * [Basic usage](#basic-usage)
-    * [Execute code on window resize](#execute-code-on-window-resize)
-    * [Get alias of current breakpoint](#get-alias-of-current-breakpoint)
-    * [Using with Foundation](#using-with-foundation)
-    * [Providing your own visibility classes](#providing-your-own-visibility-classes)
-    * [How do I include it in my project?](#how-do-i-include-it-in-my-project)
-    * [Dependencies](#dependencies)
+* [Dependencies](#dependencies)
 
 ### Installation
 ````
 bower install https://github.com/maciej-gurban/responsive-bootstrap-toolkit.git
 ````
 
-### Live example
+### Demo
 
-Available on [CodePen](http://codepen.io/dih/full/ivECj)
+Live example available on [CodePen](http://codepen.io/dih/full/ivECj). Hosted along with repository are the following usage examples:
+* [Bootstrap demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/bootstrap)
+* [Foundation demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/foundation)
+* [Custom breakpoints demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/custom)
 
-### Migrating from an older version
 
-Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of changes in each version of the library.
-
-### JavaScript features
 #### Basic usage:
 
 ````javascript
@@ -76,7 +73,7 @@ $(window).resize(
 
       // ...
 
-    }, 600)
+  }, 150)
 });
 ````
 
@@ -131,7 +128,7 @@ Currently, only Foundation 5 visibility classes are supported. If you'd like to 
 ````
 
 **Note**:
-It's up to you to create media queries that will toggle div's visibility across different screen resolutions. How? Refer to this example.
+It's up to you to create media queries that will toggle div's visibility across different screen resolutions. How? [Refer to this example](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/demos/custom/style.css).
 
 #### How do I include it in my project?
 
@@ -143,6 +140,10 @@ Paste just before `</body>`
 <!-- Your scripts using Responsive Bootstrap Toolkit -->
 <script src="js/main.js"></script>
 ````
+
+### Migrating from an older version
+
+Refer to the [changelog](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/blob/master/CHANGELOG.md) for a list of changes in each version of the library.
 
 #### Dependencies:
 * jQuery

@@ -2,13 +2,44 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   2.4.2 (2015-05-09)
+ * Version:   2.5.0 (2015-05-14)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
-;var ResponsiveBootstrapToolkit = (function($){
+var ResponsiveBootstrapToolkit = (function($){
 
     // Internal methods
     var internal = {
+
+        /**
+         * Breakpoint detection divs for each framework version
+         */
+         detectionDivs: {
+             // Bootstrap 3
+             bootstrap: {
+                 'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
+                 'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
+                 'md': $('<div class="device-md visible-md visible-md-block"></div>'),
+                 'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+             },
+             // Foundation 5
+             foundation: {
+                 'small':  $('<div class="device-xs show-for-small-only"></div>'),
+                 'medium': $('<div class="device-sm show-for-medium-only"></div>'),
+                 'large':  $('<div class="device-md show-for-large-only"></div>'),
+                 'xlarge': $('<div class="device-lg show-for-xlarge-only"></div>')
+             }
+         },
+
+         /**
+         * Append visibility divs after DOM laoded
+         */
+         applyDetectionDivs: function() {
+             $(document).ready(function(){
+                 $.each(self.breakpoints, function(alias){
+                     self.breakpoints[alias].appendTo('.responsive-bootstrap-toolkit');
+                 });
+             });
+         },
 
         /**
          * Determines whether passed string is a parsable expression
@@ -25,7 +56,7 @@
             // Used operator
             var operator = str.charAt(0);
             // Include breakpoint equal to alias?
-            var orEqual  = (str.charAt(1) == '=') ? true : false
+            var orEqual  = (str.charAt(1) == '=') ? true : false;
 
             /**
              * Index at which breakpoint name starts.
@@ -127,25 +158,38 @@
         interval: 300,
 
         /**
+         *
+         */
+        framework: null,
+
+        /**
          * Breakpoint aliases, listed from smallest to biggest
          */
-        breakpoints: {
-            'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-            'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-            'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-            'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
-        },
+        breakpoints: null,
 
         /**
          * Returns true if current breakpoint matches passed alias
          */
         is: function( str ) {
-
             if( internal.isAnExpression( str ) ) {
                 return internal.isMatchingExpression( str );
             }
+            return self.breakpoints[ str ] && self.breakpoints[ str ].is(':visible');
+        },
 
-            return self.breakpoints[ str ].is(':visible');
+        /**
+         * Determines which framework-specific breakpoint detection divs to use
+         */
+        use: function( frameworkName, breakpoints ) {
+            self.framework = frameworkName.toLowerCase();
+
+            if( self.framework === 'bootstrap' || self.framework === 'foundation') {
+                self.breakpoints = internal.detectionDivs[ self.framework ];
+            } else {
+                self.breakpoints = breakpoints;
+            }
+
+            internal.applyDetectionDivs();
         },
 
         /**
@@ -165,25 +209,23 @@
          * Waits specified number of miliseconds before executing a callback
          */
         changed: function(fn, ms) {
-            var timer; 
+            var timer;
             return function(){
-                clearTimeout(timer); 
+                clearTimeout(timer);
                 timer = setTimeout(function(){
                     fn();
-                }, ms || self.interval); 
+                }, ms || self.interval);
             };
         }
 
     };
 
-    /**
-     * Append visibility divs to <body> only after DOM laoded
-     */
-    $(document).ready(function(){
-        $.each(self.breakpoints, function(alias){
-            self.breakpoints[alias].appendTo('body');
-        });
-    });
+    // Create a placeholder
+    $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
+
+    if( self.framework === null ) {
+        self.use('bootstrap');
+    }
 
     return self;
 

@@ -1,5 +1,13 @@
 ### Changelog
 
+**2.5.0**
+Introduced `use` method allowing to use custom visibility classes. Added built-in Foundation 5 support.
+
+More changes:
+* Changing mechanism initializing the library
+* Re-organizing the demos
+* Removing SASS-related part of the project
+
 **2.4.2**
 Refactoring 'changed' method (and updating usage examples in main.js) to solve issue [#14](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/issues/14).
 
@@ -15,7 +23,7 @@ Introducing comparison operators in the form of `viewport.is(">md").
 
 **2.3.0**
 
-Removing the requirement to insert visibility divs into the document. 
+Removing the requirement to insert visibility divs into the document.
 
 **2.2.0**
 

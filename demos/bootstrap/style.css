@@ -1,17 +1,3 @@
-/*!
- * Responsive Bootstrap Toolkit - SASS & CSS 
- * 
- * Release notes:
- *
- * SASS/Compass will not group media queries, causing quite a lot of repetition in the output CSS.
- * GZIP however, will take care of the repetition making it negligible. 
- *
- * Most CSS minifiers can group media query contents. See: http://www.minifycss.com/css-compressor/ 
- *
- */
-/**
- * Breakpoint starting viewport widths
- */
 /**
  * Nothing below is required for Responsive Bootstrap Toolkit to operate
  */

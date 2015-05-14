@@ -15,13 +15,10 @@ Current version: **2.4.2**
     * [Basic usage](#basic-usage)
     * [Execute code on window resize](#execute-code-on-window-resize)
     * [Get alias of current breakpoint](#get-alias-of-current-breakpoint)
-    * [Taking precautions](#taking-precautions)
+    * [Using with Foundation](#using-with-foundation)
+    * [Providing your own visibility classes](#providing-your-own-visibility-classes)
     * [How do I include it in my project?](#how-do-i-include-it-in-my-project)
     * [Dependencies](#dependencies)
-* SASS features
-    * [Basic usage](#sass-features)
-    * [How do I include it in my project?](#sass-instructions)
-    * [Dependencies](#sass-dependencies)
 
 ### Installation
 ````
@@ -94,23 +91,47 @@ $(window).resize(
 });
 ````
 
-#### Taking precautions
+#### Using with Foundation
 
-In certain circumstances, it might be necessary to wait for certain events to happen before executing your scripts.
+Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `small`, `medium`, `large`, and `xlarge`.
+
 ````javascript
-// Execute code only when document has been loaded fully
-$(document).ready(function() {
-    if( viewport.is('xs') ) {
+(function($, viewport){
+
+    viewport.use('Foundation');
+
+    if( viewport.is('small') ) {
         // ...
     }
-});
-// Execute code only when all resouces have loaded
-$(window).load(function() {
-    if( viewport.is('xs') ) {
-        // ...
-    }
-});
+
+})(jQuery, ResponsiveBootstrapToolkit);
 ````
+
+**Note:**
+Currently, only Foundation 5 visibility classes are supported. If you'd like to support older version of any framework, or provide your own visibility classes, refer to example below.
+
+#### Providing your own visibility classes
+
+````javascript
+(function($, viewport){
+
+    var visibilityDivs = {
+        'alias-1': $('<div class="device-alias-1 your-visibility-class-1"></div>'),
+        'alias-2': $('<div class="device-alias-2 your-visibility-class-2"></div>'),
+        'alias-3': $('<div class="device-alias-3 your-visibility-class-3"></div>')
+    };
+
+    viewport.use('Custom', visibilityDivs);
+
+    if( viewport.is('alias-1') ) {
+        // ...
+    }
+
+})(jQuery, ResponsiveBootstrapToolkit);
+````
+
+**Note**:
+It's up to you to create media queries that will toggle div's visibility across different screen resolutions. How? Refer to this example.
 
 #### How do I include it in my project?
 
@@ -126,49 +147,3 @@ Paste just before `</body>`
 #### Dependencies:
 * jQuery
 * Bootstrap's responsive utility css classes (included in its standard stylesheet package)
-
-
-
-### SASS features
-#### Set different CSS property value per breakpoint
-
-````css
-h1 {
-    @include set(font-size, (xs: 20px, sm: 24px, md: 24px, lg: 30px) );
-}
-````
-
-You don't need to specify a value for each of the breakpoints. One is enough, four is the max. Example below will work just as well:
-
-````css
-h1 {
-    @include set(font-size, (xs: 20px, lg: 30px) );
-}
-````
-
-Output:
-
-````css
-@media (max-width: 767px) {
-  h1 {
-    font-size: 20px;
-  }
-}
-@media (min-width: 1200px) {
-  h1 {
-    font-size: 30px;
-  }
-}
-````
-
-
-#### SASS Instructions
-Copy contents of `compass/bootstrap-toolkit` directory into your project. File `style.scss` contains lines that need to be in your own style.scss for the mixin to work. You'll need SASS 3.3+.
-
-To start working on project's SASS, run in project's root directory.
-`compass watch compass/`
-
-
-#### SASS Dependencies
-* SASS 3.3+
-* Compass

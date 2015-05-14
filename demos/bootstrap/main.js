@@ -1,4 +1,5 @@
 // Your own scripts
+
 (function($, document, window, viewport){
 
     var highlightBox = function( className ) {
@@ -32,6 +33,8 @@
 
     $(window).resize(
         viewport.changed(function(){
+            highlightBoxes();
+
             console.log('Current breakpoint:', viewport.current());
         })
     );

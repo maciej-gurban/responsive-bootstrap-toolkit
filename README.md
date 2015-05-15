@@ -25,7 +25,7 @@ bower install https://github.com/maciej-gurban/responsive-bootstrap-toolkit.git
 
 ### Demo
 
-Live example available on [CodePen](http://codepen.io/dih/full/ivECj). Hosted along with repository are the following usage examples:
+Live example available on [CodePen](http://codepen.io/anon/pen/vOKEyR). Hosted along with repository are the following usage examples:
 * [Bootstrap demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/bootstrap)
 * [Foundation demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/foundation)
 * [Custom breakpoints demo](https://github.com/maciej-gurban/responsive-bootstrap-toolkit/tree/master/demos/custom)

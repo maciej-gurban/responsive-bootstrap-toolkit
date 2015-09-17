@@ -73,19 +73,17 @@ $(window).resize(
 
       // ...
 
-  }, 150)
-});
+    }, 150)
+);
 ````
 
 #### Get alias of current breakpoint
 ````javascript
 $(window).resize(
     viewport.changed(function(){
-
         console.log( 'Current breakpoint: '+ viewport.current() );
-
     })
-});
+);
 ````
 
 #### Using with Foundation

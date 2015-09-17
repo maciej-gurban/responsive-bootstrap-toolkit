@@ -59,7 +59,7 @@ Live example available on [CodePen](http://codepen.io/dih/full/ivECj). Hosted al
                 // ...
             }
         })
-    });
+    );
 
 })(jQuery, ResponsiveBootstrapToolkit);
 ````

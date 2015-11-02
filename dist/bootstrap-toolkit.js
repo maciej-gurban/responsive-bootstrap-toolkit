@@ -13,33 +13,33 @@ var ResponsiveBootstrapToolkit = (function($){
         /**
          * Breakpoint detection divs for each framework version
          */
-         detectionDivs: {
-             // Bootstrap 3
-             bootstrap: {
-                 'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-                 'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-                 'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-                 'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
-             },
-             // Foundation 5
-             foundation: {
-                 'small':  $('<div class="device-xs show-for-small-only"></div>'),
-                 'medium': $('<div class="device-sm show-for-medium-only"></div>'),
-                 'large':  $('<div class="device-md show-for-large-only"></div>'),
-                 'xlarge': $('<div class="device-lg show-for-xlarge-only"></div>')
-             }
-         },
+        detectionDivs: {
+            // Bootstrap 3
+            bootstrap: {
+                'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
+                'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
+                'md': $('<div class="device-md visible-md visible-md-block"></div>'),
+                'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+            },
+            // Foundation 5
+            foundation: {
+                'small':  $('<div class="device-xs show-for-small-only"></div>'),
+                'medium': $('<div class="device-sm show-for-medium-only"></div>'),
+                'large':  $('<div class="device-md show-for-large-only"></div>'),
+                'xlarge': $('<div class="device-lg show-for-xlarge-only"></div>')
+            }
+        },
 
          /**
          * Append visibility divs after DOM laoded
          */
-         applyDetectionDivs: function() {
-             $(document).ready(function(){
-                 $.each(self.breakpoints, function(alias){
-                     self.breakpoints[alias].appendTo('.responsive-bootstrap-toolkit');
-                 });
-             });
-         },
+        applyDetectionDivs: function() {
+            $(document).ready(function(){
+                $.each(self.breakpoints, function(alias){
+                    self.breakpoints[alias].appendTo('.responsive-bootstrap-toolkit');
+                });
+            });
+        },
 
         /**
          * Determines whether passed string is a parsable expression
@@ -221,7 +221,9 @@ var ResponsiveBootstrapToolkit = (function($){
     };
 
     // Create a placeholder
-    $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
+    $(document).ready(function(){
+        $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
+    });
 
     if( self.framework === null ) {
         self.use('bootstrap');

@@ -1,5 +1,8 @@
 ### Changelog
 
+**2.5.1**
+Delaying the injection of visibility divs container into `body` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.
+
 **2.5.0**
 Introduced `use` method allowing to use custom visibility classes. Added built-in Foundation 5 support.
 

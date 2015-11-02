@@ -232,3 +232,7 @@
     return self;
 
 })(jQuery);
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ResponsiveBootstrapToolkit;
+}

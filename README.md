@@ -2,7 +2,7 @@
 
 Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code. Despite the name, you can use it also with Foundation, or any other framework.
 
-Current version: **2.5.0**
+Current version: **2.5.1**
 
 ### Documentation
 * [Installation](#installation)
@@ -36,31 +36,32 @@ Live example available on [CodePen](http://codepen.io/dih/full/ivECj). Hosted al
 ````javascript
 // Wrap IIFE around your code
 (function($, viewport){
+    $(document).ready(function() {
 
-    // Executes only in XS breakpoint
-    if( viewport.is('xs') ) {
-        // ...
-    }
+        // Executes only in XS breakpoint
+        if(viewport.is('xs')) {
+            // ...
+        }
 
-    // Executes in SM, MD and LG breakpoints
-    if( viewport.is('>=sm') ) {
-        // ...
-    }
+        // Executes in SM, MD and LG breakpoints
+        if(viewport.is('>=sm')) {
+            // ...
+        }
 
-    // Executes in XS and SM breakpoints
-    if( viewport.is('<md') ) {
-        // ...
-    }
+        // Executes in XS and SM breakpoints
+        if(viewport.is('<md')) {
+            // ...
+        }
 
-    // Execute code each time window size changes
-    $(window).resize(
-        viewport.changed(function(){
-            if( viewport.is('xs') ) {
-                // ...
-            }
-        })
-    );
-
+        // Execute code each time window size changes
+        $(window).resize(
+            viewport.changed(function() {
+                if(viewport.is('xs')) {
+                    // ...
+                }
+            })
+        );
+    });
 })(jQuery, ResponsiveBootstrapToolkit);
 ````
 
@@ -69,7 +70,7 @@ Allows using custom debounce interval. The default one is set at 300ms.
 
 ````javascript
 $(window).resize(
-    viewport.changed(function(){
+    viewport.changed(function() {
 
       // ...
 
@@ -80,8 +81,8 @@ $(window).resize(
 #### Get alias of current breakpoint
 ````javascript
 $(window).resize(
-    viewport.changed(function(){
-        console.log( 'Current breakpoint: '+ viewport.current() );
+    viewport.changed(function() {
+        console.log('Current breakpoint: ', viewport.current());
     })
 );
 ````
@@ -95,7 +96,7 @@ Instead of Bootstrap's aliases `xs`, `sm`, `md` and `lg`, Foundation uses: `smal
 
     viewport.use('Foundation');
 
-    if( viewport.is('small') ) {
+    if(viewport.is('small')) {
         // ...
     }
 
@@ -118,7 +119,7 @@ Currently, only Foundation 5 visibility classes are supported. If you'd like to 
 
     viewport.use('Custom', visibilityDivs);
 
-    if( viewport.is('alias-1') ) {
+    if(viewport.is('alias-1')) {
         // ...
     }
 

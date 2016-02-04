@@ -152,6 +152,7 @@
     // Public methods and properties
     var self = {
 
+        last_breakpoint: null,
         /**
          * Determines default debouncing interval of 'changed' method
          */
@@ -216,6 +217,23 @@
                     fn();
                 }, ms || self.interval);
             };
+        },
+
+        onChange: function(callback){
+            //Init event system
+            if(self.last_breakpoint===null){
+                //Set intial breakpoint
+                self.last_breakpoint=self.current();
+                $(window).resize(function(){
+                    var current=self.current();
+                    var last=self.last_breakpoint;
+                    if(current!==last){
+                        self.last_breakpoint=current;
+                        $(window).trigger("rbt.viewport_breakpoint_changed",[self,current,last]);
+                    }
+                });
+            }
+            $(window).on("rbt.viewport_breakpoint_changed",callback);
         }
 
     };

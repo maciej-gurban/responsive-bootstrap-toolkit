@@ -1,4 +1,6 @@
 ### Changelog
+**2.5.2**
+Added `onChange` event to listen to viewport breakpoints changes.
 
 **2.5.1**
 Delaying the injection of visibility div container into `body` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.

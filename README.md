@@ -78,6 +78,17 @@ $(window).resize(
 );
 ````
 
+#### Execute code on viewport breakpoint change
+
+
+````javascript
+$(window).resize(
+    viewport.onChange(function(event,viewport,current_breakpoint,previous_breakpoint) {
+      console.log('Changed viewport size from: ', previous_breakpoint, 'to',current_breakpoint);
+    })
+);
+````
+
 #### Get alias of current breakpoint
 ````javascript
 $(window).resize(

@@ -21,6 +21,14 @@
                 'md': $('<div class="device-md visible-md visible-md-block"></div>'),
                 'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
             },
+            // Bootstrap 4
+            bootstrap4: {
+                'xs': $('<div class="hidden-sm-up"></div>'),
+                'sm': $('<div class="hidden-xs-down hidden-md-up"></div>'),
+                'md': $('<div class="hidden-sm-down hidden-lg-up"></div>'),
+                'lg': $('<div class="hidden-md-down hidden-xl-up"></div>'),
+                'xl': $('<div class="hidden-lg-down"></div>')
+            },
             // Foundation 5
             foundation: {
                 'small':  $('<div class="device-xs show-for-small-only"></div>'),

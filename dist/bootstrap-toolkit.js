@@ -191,7 +191,7 @@
         use: function( frameworkName, breakpoints ) {
             self.framework = frameworkName.toLowerCase();
 
-            if( self.framework === 'bootstrap' || self.framework === 'foundation') {
+            if( self.framework === 'bootstrap' || self.framework === 'foundation' || self.framework == 'bootstrap4' ) {
                 self.breakpoints = internal.detectionDivs[ self.framework ];
             } else {
                 self.breakpoints = breakpoints;

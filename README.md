@@ -2,7 +2,7 @@
 
 Responsive Bootstrap Toolkit provides an easy way of breakpoint detection in JavaScript, detecting changes in currently active breakpoint, as well as executing any breakpoint-specific JavaScript code. Despite the name, you can use it also with Foundation, or any other framework.
 
-Current version: **2.5.1**
+Current version: **2.6.0**
 
 ### Documentation
 * [Installation](#installation)
@@ -19,8 +19,14 @@ Current version: **2.5.1**
 * [Dependencies](#dependencies)
 
 ### Installation
+
+Using Bower:
 ````
 bower install responsive-toolkit
+````
+Using NPM:
+````
+npm install responsive-toolkit
 ````
 
 ### Demo

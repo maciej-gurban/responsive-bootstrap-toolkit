@@ -2,7 +2,7 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   2.5.1 (2015-11-02)
+ * Version:   2.6.0 (2015-11-02)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 var ResponsiveBootstrapToolkit = (function($){

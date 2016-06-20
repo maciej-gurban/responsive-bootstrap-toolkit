@@ -1,5 +1,11 @@
 ### Changelog
 
+**2.6.1**
+Adding CommonJS exports.
+
+**2.6.0**
+Registering the package in NPM registry and adding gulp build setup.
+
 **2.5.1**
 Delaying the injection of visibility div container into `body` until `$(document).ready()`, and thus allowing the inclusion of library inside `<head>` section.
 

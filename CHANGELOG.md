@@ -1,5 +1,11 @@
 ### Changelog
 
+**2.6.3**
+Propagating 2.6.2 changes correctly.
+
+**2.6.2**
+Removing issue with module.exports (issue #39).
+
 **2.6.1**
 Adding CommonJS exports.
 

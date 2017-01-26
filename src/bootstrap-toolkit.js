@@ -10,9 +10,40 @@ var ResponsiveBootstrapToolkit = (function($){
     // Internal methods
     var internal = {
     	/**
-    	* Internal variable for the timer so it can be cancelled
+    	 * Internal variable for the timer so it can be cancelled
     	 */
-    	timer:null,
+    	timer: null,
+
+    	/**
+    	 * Variable to store the last known breakpoint
+    	 */
+    	lastBreakpoint: null,
+
+    	/**
+    	 * Can be a function that is called when the breakpoint changes
+    	 */
+    	onChange:null,
+
+    	/**
+    	 * Internal variable for timeout of 'onChange' function
+    	 */
+    	onChangeTimer: null,
+
+    	/**
+    	 * Window resized function
+    	 */
+    	windowResized: function(){
+    		clearTimeout(internal.onChangeTimer);
+    		internal.onChangeTimer = setInterval(function(){
+	    		if(internal.onChange){
+		    		var newBreakpoint = self.current();
+		            if(newBreakpoint!==internal.lastBreakpoint){
+                        internal.onChange(newBreakpoint, internal.lastBreakpoint);
+		            	internal.lastBreakpoint = newBreakpoint;
+		            }
+	            }
+    		},self.onChangeInterval);
+    	},
 
         /**
          * Breakpoint detection divs for each framework version
@@ -42,7 +73,7 @@ var ResponsiveBootstrapToolkit = (function($){
             }
         },
 
-         /**
+        /**
          * Append visibility divs after DOM laoded
          */
         applyDetectionDivs: function() {
@@ -170,6 +201,11 @@ var ResponsiveBootstrapToolkit = (function($){
         interval: 300,
 
         /**
+         * Determines default debouncing interval of 'onChange' method
+         */
+        onChangeInterval: 100,
+
+        /**
          *
          */
         framework: null,
@@ -228,6 +264,16 @@ var ResponsiveBootstrapToolkit = (function($){
                 }, ms || self.interval);
                 return this;
             })();
+        },
+
+        /*
+         * Adds an function to be called when current breakpoint changes
+         */
+        onChange: function(fn, ms) {
+            internal.onChange = fn;
+            if(ms){
+            	self.onChangeInterval = ms;
+            }
         }
 
     };
@@ -235,6 +281,7 @@ var ResponsiveBootstrapToolkit = (function($){
     // Create a placeholder
     $(document).ready(function(){
         $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
+        $(window).on("resize", internal.windowResized);
     });
 
     if( self.framework === null ) {

@@ -9,6 +9,41 @@ var ResponsiveBootstrapToolkit = (function($){
 
     // Internal methods
     var internal = {
+    	/**
+    	 * Internal variable for the timer so it can be cancelled
+    	 */
+    	timer: null,
+
+    	/**
+    	 * Variable to store the last known breakpoint
+    	 */
+    	lastBreakpoint: null,
+
+    	/**
+    	 * Can be a function that is called when the breakpoint changes
+    	 */
+    	onChange:null,
+
+    	/**
+    	 * Internal variable for timeout of 'onChange' function
+    	 */
+    	onChangeTimer: null,
+
+    	/**
+    	 * Window resized function
+    	 */
+    	windowResized: function(){
+    		clearTimeout(internal.onChangeTimer);
+    		internal.onChangeTimer = setInterval(function(){
+	    		if(internal.onChange){
+		    		var newBreakpoint = self.current();
+		            if(newBreakpoint!==internal.lastBreakpoint){
+		            	internal.lastBreakpoint = newBreakpoint;
+		            	internal.onChange(newBreakpoint);
+		            }
+	            }
+    		},self.onChangeInterval);
+    	},
 
         /**
          * Breakpoint detection divs for each framework version
@@ -21,6 +56,14 @@ var ResponsiveBootstrapToolkit = (function($){
                 'md': $('<div class="device-md visible-md visible-md-block"></div>'),
                 'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
             },
+            // Bootstrap 4
+            bootstrap4: {
+                'xs': $('<div class="device-xs d-block"></div>'),
+                'sm': $('<div class="device-sm d-block hidden-xs-down hidden-md-up"></div>'),
+                'md': $('<div class="device-md d-block hidden-sm-down hidden-lg-up"></div>'),
+                'lg': $('<div class="device-lg d-block hidden-md-down hidden-xl-up"></div>'),
+                'xl': $('<div class="device-xl d-block hidden-lg-down"></div>')
+            },
             // Foundation 5
             foundation: {
                 'small':  $('<div class="device-xs show-for-small-only"></div>'),
@@ -30,7 +73,7 @@ var ResponsiveBootstrapToolkit = (function($){
             }
         },
 
-         /**
+        /**
          * Append visibility divs after DOM laoded
          */
         applyDetectionDivs: function() {
@@ -158,6 +201,11 @@ var ResponsiveBootstrapToolkit = (function($){
         interval: 300,
 
         /**
+         * Determines default debouncing interval of 'onChange' method
+         */
+        onChangeInterval: 100,
+
+        /**
          *
          */
         framework: null,
@@ -183,7 +231,7 @@ var ResponsiveBootstrapToolkit = (function($){
         use: function( frameworkName, breakpoints ) {
             self.framework = frameworkName.toLowerCase();
 
-            if( self.framework === 'bootstrap' || self.framework === 'foundation') {
+            if( self.framework === 'bootstrap4' || self.framework === 'bootstrap' || self.framework === 'foundation') {
                 self.breakpoints = internal.detectionDivs[ self.framework ];
             } else {
                 self.breakpoints = breakpoints;
@@ -209,13 +257,23 @@ var ResponsiveBootstrapToolkit = (function($){
          * Waits specified number of miliseconds before executing a callback
          */
         changed: function(fn, ms) {
-            var timer;
-            return function(){
-                clearTimeout(timer);
-                timer = setTimeout(function(){
+            return (function(){
+                clearTimeout(internal.timer);
+                internal.timer = setTimeout(function(){
                     fn();
                 }, ms || self.interval);
-            };
+                return this;
+            })();
+        },
+
+        /*
+         * Adds an function to be called when current breakpoint changes
+         */
+        onChange: function(fn, ms) {
+            internal.onChange = fn;
+            if(ms){
+            	self.onChangeInterval = ms;
+            }
         }
 
     };
@@ -223,6 +281,7 @@ var ResponsiveBootstrapToolkit = (function($){
     // Create a placeholder
     $(document).ready(function(){
         $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
+        $(window).on("resize", internal.windowResized);
     });
 
     if( self.framework === null ) {

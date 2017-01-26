@@ -9,6 +9,10 @@ var ResponsiveBootstrapToolkit = (function($){
 
     // Internal methods
     var internal = {
+    	/**
+    	* Internal variable for the timer so it can be cancelled
+    	 */
+    	timer:null,
 
         /**
          * Breakpoint detection divs for each framework version
@@ -217,13 +221,13 @@ var ResponsiveBootstrapToolkit = (function($){
          * Waits specified number of miliseconds before executing a callback
          */
         changed: function(fn, ms) {
-            var timer;
-            return function(){
-                clearTimeout(timer);
-                timer = setTimeout(function(){
+            return (function(){
+                clearTimeout(internal.timer);
+                internal.timer = setTimeout(function(){
                     fn();
                 }, ms || self.interval);
-            };
+                return this;
+            })();
         }
 
     };

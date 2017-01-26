@@ -281,7 +281,7 @@ var ResponsiveBootstrapToolkit = (function($){
     // Create a placeholder
     $(document).ready(function(){
         $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
-        $(window).on("resize",internal.windowResized);
+        $(window).on("resize", internal.windowResized);
     });
 
     if( self.framework === null ) {

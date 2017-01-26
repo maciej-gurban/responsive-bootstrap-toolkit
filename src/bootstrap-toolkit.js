@@ -32,7 +32,7 @@ var ResponsiveBootstrapToolkit = (function($){
     	/**
     	 * Window resized function
     	 */
-    	windowResized: function(){
+    	windowResized: function(ms){
     		clearTimeout(internal.onChangeTimer);
     		internal.onChangeTimer = setInterval(function(){
 	    		if(internal.onChange){
@@ -42,7 +42,7 @@ var ResponsiveBootstrapToolkit = (function($){
 		            	internal.lastBreakpoint = newBreakpoint;
 		            }
 	            }
-    		},self.onChangeInterval);
+    		}, ms || self.onChangeInterval );
     	},
 
         /**
@@ -274,6 +274,7 @@ var ResponsiveBootstrapToolkit = (function($){
             if(ms){
             	self.onChangeInterval = ms;
             }
+            internal.windowResized(1);
         }
 
     };

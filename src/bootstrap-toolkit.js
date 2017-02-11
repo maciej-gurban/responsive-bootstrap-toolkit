@@ -9,60 +9,24 @@ var ResponsiveBootstrapToolkit = (function($){
 
     // Internal methods
     var internal = {
-    	/**
-    	 * Internal variable for the timer so it can be cancelled
-    	 */
-    	timer: null,
-
-    	/**
-    	 * Variable to store the last known breakpoint
-    	 */
-    	lastBreakpoint: null,
-
-    	/**
-    	 * Can be a function that is called when the breakpoint changes
-    	 */
-    	onChange:null,
-
-    	/**
-    	 * Internal variable for timeout of 'onChange' function
-    	 */
-    	onChangeTimer: null,
-
-    	/**
-    	 * Window resized function
-    	 */
-    	windowResized: function(ms){
-    		clearTimeout(internal.onChangeTimer);
-    		internal.onChangeTimer = setInterval(function(){
-	    		if(internal.onChange){
-		    		var newBreakpoint = self.current();
-		            if(newBreakpoint!==internal.lastBreakpoint){
-                        internal.onChange(newBreakpoint, internal.lastBreakpoint);
-		            	internal.lastBreakpoint = newBreakpoint;
-		            }
-	            }
-    		}, ms || self.onChangeInterval );
-    	},
-
         /**
          * Breakpoint detection divs for each framework version
          */
         detectionDivs: {
+            // Bootstrap 4
+            bootstrap4: {
+                'xs': $('<div class="device-xs d-block hidden-sm-up"></div>'),
+                'sm': $('<div class="device-sm d-block hidden-xs-down hidden-md-up"></div>'),
+                'md': $('<div class="device-md d-block hidden-sm-down hidden-lg-up"></div>'),
+                'lg': $('<div class="device-lg d-block hidden-md-down hidden-xl-up"></div>'),
+                'xl': $('<div class="device-xl d-block hidden-lg-down"></div>')
+            },
             // Bootstrap 3
             bootstrap: {
                 'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
                 'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
                 'md': $('<div class="device-md visible-md visible-md-block"></div>'),
                 'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
-            },
-            // Bootstrap 4
-            bootstrap4: {
-                'xs': $('<div class="device-xs d-block"></div>'),
-                'sm': $('<div class="device-sm d-block hidden-xs-down hidden-md-up"></div>'),
-                'md': $('<div class="device-md d-block hidden-sm-down hidden-lg-up"></div>'),
-                'lg': $('<div class="device-lg d-block hidden-md-down hidden-xl-up"></div>'),
-                'xl': $('<div class="device-xl d-block hidden-lg-down"></div>')
             },
             // Foundation 5
             foundation: {
@@ -257,24 +221,39 @@ var ResponsiveBootstrapToolkit = (function($){
          * Waits specified number of miliseconds before executing a callback
          */
         changed: function(fn, ms) {
-            return (function(){
-                clearTimeout(internal.timer);
-                internal.timer = setTimeout(function(){
+            var timer;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
                     fn();
                 }, ms || self.interval);
-                return this;
-            })();
+            };
         },
 
         /*
-         * Adds an function to be called when current breakpoint changes
+         * Calls function when current breakpoint changes
          */
-        onChange: function(fn, ms) {
-            internal.onChange = fn;
-            if(ms){
-            	self.onChangeInterval = ms;
+        breakpointChanged: function(fn, ms) {
+            var resizeFn,
+            timer,
+            lastBreakpoint = self.current();
+
+            //clear the resize event if previously set
+            if(resizeFn){
+                $(window).off("resize orientationchange", resizeFn);
             }
-            internal.windowResized(1);
+
+            resizeFn = function(){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    var newBreakpoint = self.current();
+                    if(newBreakpoint!==lastBreakpoint){
+                        fn(newBreakpoint, internal.lastBreakpoint);
+                        lastBreakpoint = newBreakpoint;
+                    }
+                }, ms || self.interval);
+            };
+            $(window).on("resize orientationchange", resizeFn);
         }
 
     };
@@ -282,7 +261,6 @@ var ResponsiveBootstrapToolkit = (function($){
     // Create a placeholder
     $(document).ready(function(){
         $('<div class="responsive-bootstrap-toolkit"></div>').appendTo('body');
-        $(window).on("resize", internal.windowResized);
     });
 
     if( self.framework === null ) {

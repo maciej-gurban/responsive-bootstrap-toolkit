@@ -162,12 +162,7 @@ var ResponsiveBootstrapToolkit = (function($){
         /**
          * Determines default debouncing interval of 'changed' method
          */
-        interval: 300,
-
-        /**
-         * Determines default debouncing interval of 'onChange' method
-         */
-        onChangeInterval: 100,
+        interval: 100,
 
         /**
          *

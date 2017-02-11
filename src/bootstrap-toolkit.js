@@ -13,14 +13,14 @@ var ResponsiveBootstrapToolkit = (function($){
          * Breakpoint detection divs for each framework version
          */
         detectionDivs: {
-            // Bootstrap 4
-            bootstrap4: {
+            // Bootstrap 4 - Kept in for future reference on BS4 Beta release
+            /*bootstrap4: {
                 'xs': $('<div class="device-xs d-block hidden-sm-up"></div>'),
                 'sm': $('<div class="device-sm d-block hidden-xs-down hidden-md-up"></div>'),
                 'md': $('<div class="device-md d-block hidden-sm-down hidden-lg-up"></div>'),
                 'lg': $('<div class="device-lg d-block hidden-md-down hidden-xl-up"></div>'),
                 'xl': $('<div class="device-xl d-block hidden-lg-down"></div>')
-            },
+            },*/
             // Bootstrap 3
             bootstrap: {
                 'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),

@@ -109,6 +109,7 @@ var ResponsiveBootstrapToolkit = (function($){
             var expression = internal.splitExpression( str );
 
             // Get names of all breakpoints
+            console.log(self.breakpoints);
             var breakpointList = Object.keys(self.breakpoints);
 
             // Get index of sought breakpoint in the list

@@ -248,7 +248,7 @@ var ResponsiveBootstrapToolkit = (function($){
                 timer = setTimeout(function(){
                     var newBreakpoint = self.current();
                     if(newBreakpoint!==lastBreakpoint){
-                        fn(newBreakpoint, internal.lastBreakpoint);
+                        fn(newBreakpoint, lastBreakpoint);
                         lastBreakpoint = newBreakpoint;
                     }
                 }, ms || self.interval);

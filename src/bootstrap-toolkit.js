@@ -9,11 +9,18 @@ var ResponsiveBootstrapToolkit = (function($){
 
     // Internal methods
     var internal = {
-
         /**
          * Breakpoint detection divs for each framework version
          */
         detectionDivs: {
+            // Bootstrap 4 - Kept in for future reference on BS4 Beta release
+            /*bootstrap4: {
+                'xs': $('<div class="device-xs d-block hidden-sm-up"></div>'),
+                'sm': $('<div class="device-sm d-block hidden-xs-down hidden-md-up"></div>'),
+                'md': $('<div class="device-md d-block hidden-sm-down hidden-lg-up"></div>'),
+                'lg': $('<div class="device-lg d-block hidden-md-down hidden-xl-up"></div>'),
+                'xl': $('<div class="device-xl d-block hidden-lg-down"></div>')
+            },*/
             // Bootstrap 3
             bootstrap: {
                 'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
@@ -30,7 +37,7 @@ var ResponsiveBootstrapToolkit = (function($){
             }
         },
 
-         /**
+        /**
          * Append visibility divs after DOM laoded
          */
         applyDetectionDivs: function() {
@@ -155,7 +162,7 @@ var ResponsiveBootstrapToolkit = (function($){
         /**
          * Determines default debouncing interval of 'changed' method
          */
-        interval: 300,
+        interval: 100,
 
         /**
          *
@@ -183,7 +190,7 @@ var ResponsiveBootstrapToolkit = (function($){
         use: function( frameworkName, breakpoints ) {
             self.framework = frameworkName.toLowerCase();
 
-            if( self.framework === 'bootstrap' || self.framework === 'foundation') {
+            if( Object.keys(internal.detectionDivs).indexOf(self.framework) !== -1 ) {
                 self.breakpoints = internal.detectionDivs[ self.framework ];
             } else {
                 self.breakpoints = breakpoints;
@@ -216,6 +223,32 @@ var ResponsiveBootstrapToolkit = (function($){
                     fn();
                 }, ms || self.interval);
             };
+        },
+
+        /*
+         * Calls function when current breakpoint changes
+         */
+        breakpointChanged: function(fn, ms) {
+            var resizeFn,
+            timer,
+            lastBreakpoint = self.current();
+
+            //clear the resize event if previously set
+            if(resizeFn){
+                $(window).off("resize orientationchange", resizeFn);
+            }
+
+            resizeFn = function(){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    var newBreakpoint = self.current();
+                    if(newBreakpoint!==lastBreakpoint){
+                        fn(newBreakpoint, lastBreakpoint);
+                        lastBreakpoint = newBreakpoint;
+                    }
+                }, ms || self.interval);
+            };
+            $(window).on("resize orientationchange", resizeFn);
         }
 
     };

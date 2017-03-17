@@ -5,7 +5,7 @@
  * Version:   2.6.3 (2016-06-21)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
-var ResponsiveBootstrapToolkit = (function($){
+var ResponsiveBootstrapToolkit = function($){
 
     // Internal methods
     var internal = {
@@ -30,7 +30,7 @@ var ResponsiveBootstrapToolkit = (function($){
             }
         },
 
-         /**
+        /**
          * Append visibility divs after DOM laoded
          */
         applyDetectionDivs: function() {
@@ -231,8 +231,11 @@ var ResponsiveBootstrapToolkit = (function($){
 
     return self;
 
-})(jQuery);
+};
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ResponsiveBootstrapToolkit;
+    var jQuery = require('jquery');
+    module.exports = ResponsiveBootstrapToolkit(jQuery);
+} else {
+    ResponsiveBootstrapToolkit = ResponsiveBootstrapToolkit(window.jQuery);
 }

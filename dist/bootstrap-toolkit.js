@@ -2,7 +2,7 @@
  * Responsive Bootstrap Toolkit
  * Author:    Maciej Gurban
  * License:   MIT
- * Version:   2.6.3 (2016-06-21)
+ * Version:   2.7.0 (2022-04-29)
  * Origin:    https://github.com/maciej-gurban/responsive-bootstrap-toolkit
  */
 var ResponsiveBootstrapToolkit = (function($){
@@ -16,10 +16,12 @@ var ResponsiveBootstrapToolkit = (function($){
         detectionDivs: {
             // Bootstrap 3
             bootstrap: {
-                'xs': $('<div class="device-xs visible-xs visible-xs-block"></div>'),
-                'sm': $('<div class="device-sm visible-sm visible-sm-block"></div>'),
-                'md': $('<div class="device-md visible-md visible-md-block"></div>'),
-                'lg': $('<div class="device-lg visible-lg visible-lg-block"></div>')
+                xs: $('<div class="d-block d-sm-none"></div>'),
+                sm: $('<div class="d-none d-sm-block d-md-none"></div>'),
+                md: $('<div class="d-none d-md-block d-lg-none"></div>'),
+                lg: $('<div class="d-none d-lg-block d-xl-none"></div>'),
+                xl: $('<div class="d-none d-xl-block d-xxl-none"></div>'),
+                xxl: $('<div class="d-none d-xxl-block"></div>')
             },
             // Foundation 5
             foundation: {
